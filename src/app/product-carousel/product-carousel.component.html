@@ -1,0 +1,115 @@
+<div class="container">
+    <!-- Popolari Carousel -->
+    <h2>Prodotti Popolari</h2>
+    <div class="slider-wrapper">
+        <div class="card-list" [style.transform]="getTransformStylePopular()">
+            <div class="card-item" *ngFor="let product of popularProducts">
+                <img class="user-image" [src]="product.image" alt="{{product.name}}">
+                    <h2 class="user-name">{{product.name}}</h2>
+                        <p class="user-profession">{{product.year}}</p>
+                        <p class="price">{{product.price | currency:'EUR':'€':'1.2-2':'it'}}</p>
+                        <button class="message-button" (click)="navigateToProduct(product.id)">Aggiungi al carrello</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="btn-container">
+    <button class="btn" (click)="prevSlidePopular()" [disabled]="currentIndexPopular === 0">Prev</button>
+    <button class="btn" (click)="nextSlidePopular()" [disabled]="(currentIndexPopular + itemsPerPage) >= popularProducts.length">Next</button>
+</div>
+
+<br>
+<br>
+
+<div class="container">
+    <!-- Serie A Carousel -->
+    <h2>Serie A</h2>
+    <div class="slider-wrapper">
+        <div class="card-list" [style.transform]="getTransformStyleOnSale()">
+            <div class="card-item" *ngFor="let product of serieAProducts">
+                <img class="user-image" [src]="product.image" alt="{{product.name}}">
+                    <h2 class="user-name">{{product.name}}</h2>
+                        <p class="user-profession">{{product.year}}</p>
+                        <p class="price">{{product.price | currency:'EUR':'€':'1.2-2':'it'}}</p>
+                        <button class="message-button" (click)="navigateToProduct(product.id)">Aggiungi al carrello</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="btn-container">
+    <button class="btn" (click)="prevSlideOnSale()" [disabled]="currentIndexOnSale === 0">Prev</button>
+    <button class="btn" (click)="nextSlideOnSale()" [disabled]="(currentIndexOnSale + itemsPerPage) >= serieAProducts.length">Next</button>
+</div>
+
+<br>
+<br>
+
+<div class="container">
+    <!-- Serie A Carousel -->
+    <h2>Nazionali</h2>
+    <div class="slider-wrapper">
+        <div class="card-list" [style.transform]="getTransformStyleOnSale()">
+            <div class="card-item" *ngFor="let product of nationalProducts">
+                <img class="user-image" [src]="product.image" alt="{{product.name}}">
+                    <h2 class="user-name">{{product.name}}</h2>
+                        <p class="user-profession">{{product.year}}</p>
+                        <p class="price">{{product.price | currency:'EUR':'€':'1.2-2':'it'}}</p>
+                        <button class="message-button" (click)="navigateToProduct(product.id)">Aggiungi al carrello</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <!-- Serie A Carousel -->
+    <h2>MLS</h2>
+    <div class="slider-wrapper">
+        <div class="card-list" [style.transform]="getTransformStyleOnSale()">
+            <div class="card-item" *ngFor="let product of mlsProducts">
+                <img class="user-image" [src]="product.image" alt="{{product.name}}">
+                    <h2 class="user-name">{{product.name}}</h2>
+                        <p class="user-profession">{{product.year}}</p>
+                        <p class="price">{{product.price | currency:'EUR':'€':'1.2-2':'it'}}</p>
+                        <button class="message-button" (click)="navigateToProduct(product.id)">Aggiungi al carrello</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <!-- Serie A Carousel -->
+    <h2>La Liga</h2>
+    <div class="slider-wrapper">
+        <div class="card-list" [style.transform]="getTransformStyleOnSale()">
+            <div class="card-item" *ngFor="let product of laligaProducts">
+                <img class="user-image" [src]="product.image" alt="{{product.name}}">
+                    <h2 class="user-name">{{product.name}}</h2>
+                        <p class="user-profession">{{product.year}}</p>
+                        <p class="price">{{product.price | currency:'EUR':'€':'1.2-2':'it'}}</p>
+                        <button class="message-button" (click)="navigateToProduct(product.id)">Aggiungi al carrello</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <!-- Serie A Carousel -->
+    <h2>Premier League</h2>
+    <div class="slider-wrapper">
+        <div class="card-list" [style.transform]="getTransformStyleOnSale()">
+            <div class="card-item" *ngFor="let product of premierProducts">
+                <img class="user-image" [src]="product.image" alt="{{product.name}}">
+                    <h2 class="user-name">{{product.name}}</h2>
+                        <p class="user-profession">{{product.year}}</p>
+                        <p class="price">{{product.price | currency:'EUR':'€':'1.2-2':'it'}}</p>
+                        <button class="message-button" (click)="navigateToProduct(product.id)">Aggiungi al carrello</button>
+
+            </div>
+        </div>
+    </div>
+</div>

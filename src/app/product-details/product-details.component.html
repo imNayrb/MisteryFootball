@@ -1,0 +1,90 @@
+<div *ngIf="product" class="small-container single-product">
+    <div class="row">
+        <div class="col-2">
+            <img [src]="product.image" alt="{{ product.name }}" id="ProductImg"/>
+
+            <div class="small-img-row">
+                <div class="small-img-col">
+                    <img [src]="product.image2" alt="{{ product.name }}" width="100%" class="small-img" id="SmallImg">
+                </div>
+                <div class="small-img-col">
+                    <img [src]="product.image3" alt="{{ product.name }}" width="100%" class="small-img" id="SmallImg">
+                </div>
+                <div class="small-img-col">
+                    <img [src]="product.image4" alt="{{ product.name }}" width="100%" class="small-img" id="SmallImg">
+                </div>
+                <div class="small-img-col">
+                    <img [src]="product.image5" alt="{{ product.name }}" width="100%" class="small-img" id="SmallImg">
+                </div>
+            </div>
+
+        </div>
+        <div class="col-3">
+
+            <h1>{{ product.name }}</h1>
+            <h4> {{ product.price | currency:'EUR':'€':'1.2-2':'it' }}  </h4>
+            <div class="roba">
+            <select>
+                <option>Taglia</option>
+                <option>XL</option>
+                <option>L</option>
+                <option>M</option>
+                <option>S</option>
+            </select>
+            <input type="number" value="1">
+            <button class="message-button">Aggiungi al carrello</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var ProductImg = document.getElementById("ProductImg");
+    var SmallImg = document.getElementsByClassName("small-img");
+
+     SmallImg[0].onclick = function() 
+     {
+        ProductImg.src = SmallImg[0].src;
+     }
+
+     SmallImg[1].onclick = function() 
+     {
+        ProductImg.src = SmallImg[1].src;
+     }
+
+     SmallImg[2].onclick = function() 
+     {
+        ProductImg.src = SmallImg[2].src;
+     }
+
+     SmallImg[3].onclick = function() 
+     {
+        ProductImg.src = SmallImg[3].src;
+     }
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
