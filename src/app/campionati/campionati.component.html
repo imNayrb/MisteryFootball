@@ -1,0 +1,103 @@
+<div class="container">
+    <!-- Serie A Carousel -->
+    <h2>Prodotti Serie A</h2>
+    <br>
+    <br>
+    <div class="slider-wrapper">
+        <div class="card-list" [style.transform]="getTransformStyleSerieA()">
+            <div class="card-item" *ngFor="let product of serieAProducts">
+                <img class="user-image" [src]="product.image" alt="{{product.name}}">
+                    <h2 class="user-name">{{product.name}}</h2>
+                        <p class="user-profession">{{product.year}}</p>
+                        <p class="price">{{product.price | currency:'EUR':'€':'1.2-2':'it'}}</p>
+                        <button class="message-button" (click)="navigateToProduct(product.id)">Aggiungi al carrello</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="btn-container">
+    <button class="btn" (click)="prevSlideSerieA()" [disabled]="currentIndexSerieA === 0">Prev</button>
+    <button class="btn" (click)="nextSlideSerieA()" [disabled]="(currentIndexSerieA + itemsPerPage) >= serieAProducts.length">Next</button>
+</div>
+
+<br>
+<br>
+
+<div class="container">
+    <!-- Premier League Carousel -->
+    <h2>Prodotti Premier League</h2>
+    <br>
+    <br>
+    <div class="slider-wrapper">
+        <div class="card-list" [style.transform]="getTransformStylePremier()">
+            <div class="card-item" *ngFor="let product of premierProducts">
+                <img class="user-image" [src]="product.image" alt="{{product.name}}">
+                    <h2 class="user-name">{{product.name}}</h2>
+                        <p class="user-profession">{{product.year}}</p>
+                        <p class="price">{{product.price | currency:'EUR':'€':'1.2-2':'it'}}</p>
+                        <button class="message-button" (click)="navigateToProduct(product.id)">Aggiungi al carrello</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="btn-container">
+    <button class="btn" (click)="prevSlidePremier()" [disabled]="currentIndexPremier === 0">Prev</button>
+    <button class="btn" (click)="nextSlidePremier()" [disabled]="(currentIndexPremier + itemsPerPage) >= premierProducts.length">Next</button>
+</div>
+
+<br>
+<br>
+
+<div class="container">
+    <!-- Popolari Carousel -->
+    <h2>Prodotti La Liga</h2>
+    <br>
+    <br>
+    <div class="slider-wrapper">
+        <div class="card-list" [style.transform]="getTransformStyleLaLiga()">
+            <div class="card-item" *ngFor="let product of laligaProducts">
+                <img class="user-image" [src]="product.image" alt="{{product.name}}">
+                    <h2 class="user-name">{{product.name}}</h2>
+                        <p class="user-profession">{{product.year}}</p>
+                        <p class="price">{{product.price | currency:'EUR':'€':'1.2-2':'it'}}</p>
+                        <button class="message-button" (click)="navigateToProduct(product.id)">Aggiungi al carrello</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="btn-container">
+    <button class="btn" (click)="prevSlideLaLiga()" [disabled]="currentIndexLaLiga === 0">Prev</button>
+    <button class="btn" (click)="nextSlideLaLiga()" [disabled]="(currentIndexLaLiga + itemsPerPage) >= laligaProducts.length">Next</button>
+</div>
+
+<br>
+<br>
+
+<div class="container">
+    <!-- Popolari Carousel -->
+    <h2>Prodotti MLS</h2>
+    <br>
+    <br>
+    <div class="slider-wrapper">
+        <div class="card-list">
+            <div class="card-item" *ngFor="let product of mlsProducts">
+                <img class="user-image" [src]="product.image" alt="{{product.name}}">
+                    <h2 class="user-name">{{product.name}}</h2>
+                        <p class="user-profession">{{product.year}}</p>
+                        <p class="price">{{product.price | currency:'EUR':'€':'1.2-2':'it'}}</p>
+                        <button class="message-button" (click)="navigateToProduct(product.id)">Aggiungi al carrello</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="btn-container">
+    <button class="btn" (click)="prevSlidePopular()" [disabled]="currentIndexPopular === 0">Prev</button>
+    <button class="btn" (click)="nextSlidePopular()" [disabled]="(currentIndexPopular + itemsPerPage) >= serieAProducts.length">Next</button>
+</div> -->
+
+<br>
+<br>

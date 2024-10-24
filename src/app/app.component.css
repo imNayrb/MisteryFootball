@@ -1,184 +1,204 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-/* SideBar */
-nav{
-    z-index: 1;
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-.sidebar{
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 250px;
-    padding: 10px 14px;
-    background: var(--sidebar-color);
+:root{
+    --header-height: 3.5rem;
+
+    --title-color: hsl(0, 0%, 95%);
+    --text-color: hsl(0, 0%, 70%);
+    --text-color-light: hsl(0, 0, 60%);
+    --body-color: hsl(0, 0%, 0%);
+    --container-color: hsl(0, 0%, 8%);
+
+    --biggest-font-size: 2.75rem;
+    --h1-font-size: 1.5rem;
+    --h2-font-size: 1.25rem;
+    --h3-font-size: 1rem;
+    --normal-font-size: .938rem;
+    --small-font-size: .813rem;
+    --smaller-font-size: .75rem;
+
+    --font-regular: 400;
+    --font-medium: 500;
+    --font-semi-bold: 600;
+
+    --z-tooltip: 10;
+    --z-fixed: 100;
+
 }
 
-.sidebar .image-text img{
-    width: 40px;
-    border-radius: 6px;
+@media screen {
+    :root {
+        --biggest-font-size: 5.5rem;
+        --h1-font-size: 2.5rem;
+        --h2-font-size: 1.5rem;
+        --h3-font-size: 1.25rem;
+        --normal-font-size: 1rem;
+        --small-font-size: .875rem;
+        --smaller-font-size: .813rem;
+    }
 }
 
-.sidebar header .image-text{
-    display: flex;
-    align-items: center;
+html{
+    scroll-behavior: smooth;
 }
 
-.sidebar .text{
-    font-size: 16px;
-    font-weight: 500;
+body, button, input{
+    font-size: var(--normal-font-size);
     color: var(--text-color);
 }
 
-.sidebar .image{
-    min-width: 60px;
-    display: flex;
-    align-items: center;
+body{
+    background-color: var(--body-color);
 }
 
-header .image-text .header-text{
-    display: flex;
-    flex-direction: column;
-}
-
-.header-text .name{
-    font-weight: 600;
-}
-
-.header-text .profession{
-    margin-top: -2px;
-}
-
-.sidebar header .toggle{
-    position: absolute;
-    top: 50%;
-    right: -25px;
-    transform: translateY(-50%);
-    height: 25px;
-    width: 25px;
-    background: var(--primary-color);
-    display: flex;
-    align-items: center;
-    justify-content:center ;
-    border-radius: 50%;
-    color: var(--sidebar-color);
-    font-size: 22px;
-}
-
-.sidebar header{
-    position: relative;
-}
-
-.sidebar li{
-    height: 50px;
-    margin-top: 10px;
-    list-style: none;
-    display: flex;
-    align-items: center;
-}
-
-.sidebar li .icon{
-    font-size: 20px;
-    min-width: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.sidebar li .icon,
-.sidebar li .text{
-    color: var(--text-color);
-    transition: var(--tran-02) ;
-}
-
-.sidebar .search-box {
-    background: var(--primary-color-light);
-}
-
-.sidebar li a{
-    text-decoration: none;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    border-radius: 6px;
-    transition: var(--tran-04);
-}
-
-.search-box input{
-    height: 100%;
-    width: 100%;
-    background: var(--primary-color-light);
+button, input{
     outline: none;
     border: none;
 }
 
-.sidebar li a:hover{
-    background: var(--primary-color);
+h1, h2, h3, h4{
+    color: var(--title-color);
+    font-weight: var(--font-semi-bold);
 }
 
-.sidebar li a:hover .icon,
-.sidebar li a:hover .text {
-    color: var(--sidebar-color);
+ul{
+    list-style: none;
 }
 
-.sidebar .menu-bar{
-    height: calc(100% - 50px);
+a{
+    text-decoration: none;
+}
+
+img{
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.container{
+    max-width: 100%;
+    margin-inline: 1.5rem;
+    padding: 20px;
+}
+
+.grid{
+    display: grid;
+    gap: 1.5rem;
+}
+
+.section{
+    padding-block: 5rem 1rem;
+}
+
+.section__title{
+    text-align: center;
+    font-size: var(--h1-font-size);
+    margin-bottom: 1.5rem;
+}
+
+.main{
+    overflow: hidden;
+}
+
+
+/* Nav */
+
+.header{
+    position: fixed;
+    width: 100%;
+    background-color: transparent;
+    top: 0;
+    left: 0;
+    z-index: var(--z-fixed);
+}
+
+.nav{
+    height: var(--header-height);
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
-}
-
-.menu-bar .mode{
-    background: var(--primary-color-light);
-}
-
-.menu-bar .mode i{
-    position: absolute;
-}
-
-.menu-bar .mode .moon-sun{
-    height: 50px;
-    width: 60px;
-    display: flex;
     align-items: center;
+    background: var(--body-color);
 }
 
-.menu-bar .mode i.sun{
-    opacity: 0;
+.nav__logo{
+    color: var(--title-color);
+    font-weight: var(--font-semi-bold);
 }
 
-.menu-bar .mode .toggle-switch{
-    height: 100%;
-    min-width: 60px;
+.nav__toggle, .nav__close{
     display: flex;
-    align-items: center;
-    justify-content: center;
+    font-size: 1.25rem;
+    color: var(--title-color);
     cursor: pointer;
 }
 
-.toggle-switch .switch{
-    height: 22px;
-    width: 44px;
-    border-radius: 25px;
-    background: var(--toggle-color);
-    position: relative;
+@media screen and (max-width: 1023px) {
+    .nav__menu{
+        position: fixed;
+        top: -100%;
+        left: 0;
+        background-color: hsla(0, 0%, 0%, .3);
+        width: 100%;
+        padding-block: 4rem;
+        backdrop-filter: blur(24px);
+        transition: top .4s;
+    }
 }
 
-.switch::before{
-    height: 15px;
-    width: 15px;
-    background: var(--sidebar-color);
-    content: '';
+.nav__list{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2.5rem;
+}
+
+.nav__link{
+    color: var(--title-color);
+    font-weight: var(--font-medium);
+}
+
+.nav__close{
     position: absolute;
-    border-radius: 50%;
-    top: 50%;
-    left: 5px;
-    transform: translateY(-50%);
-    transition: var(--tran-03);
+    top: 1rem;
+    right: 1.5rem;
 }
 
-body.dark .switch::before{
-    left: 20px;
+.show-menu{
+    top: 0;
+}
+
+@media screen and (min-width: 1023px){
+    .nav__close,
+    .nav__toggle{
+        display: none;
+    }
+    .nav__list{
+        flex-direction: row;
+        column-gap: 4rem;
+    }
+
+    
+}
+
+@media screen and (min-width:1152px) {
+    .container{
+        margin-inline: auto;
+    }
+
+    .section{
+        padding-block: 7rem 2rem;
+    }
+
+    .nav{
+        height: calc(var(--header-height) + 1.5rem);
+    }
+
+
 }

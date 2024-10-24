@@ -92,6 +92,18 @@ export class ProductService {
       categories: ['popular','premier'] 
     },
     { 
+      id: 6, 
+      name: 'Maglietta Arsenal', 
+      price: 35.00, 
+      image: '/assets/Arsenal-P.jpg',
+      image2: '/assets/Arsenal1.jpg',
+      image3: '/assets/Arsenal2.jpg',
+      image4: '/assets/Arsenal3.jpg',
+      image5: '/assets/Arsenal4.jpg', 
+      year: '2030/2031', 
+      categories: ['popular','premier'] 
+    },
+    { 
       id: 7, 
       name: 'Maglietta Francia', 
       price: 35.00, 
@@ -138,6 +150,18 @@ export class ProductService {
       image5: '/assets/Valencia4.jpg', 
       year: '2030/2031', 
       categories: ['laliga'] 
+    },
+    { 
+      id: 10, 
+      name: 'Maglietta Inter', 
+      price: 35.00, 
+      image: '/assets/Inter-P.jpg',
+      image2: '/assets/Inter1.jpg',
+      image3: '/assets/Inter2.jpg',
+      image4: '/assets/Inter3.jpg',
+      image5: '/assets/Inter4.jpg',
+      year: '2030/2031', 
+      categories: ['serie A'] 
     },
   ];
 

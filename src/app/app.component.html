@@ -1,71 +1,38 @@
-<main>
-<nav class="sidebar">
-  <header>
-    <div class="image-text">
-      <span class="image">
-        <img src="/assets/Logo.png" alt="Logo">
-      </span>
+<!-- HTML Template (app.component.html) -->
+<header class="header">
+  <nav class="nav container">
+    <a href="" class="nav__logo">
+      Mistery Football
+    </a>
+    
+    <!-- Navigation Menu -->
+    <div [ngClass]="{'show-menu': menuOpen}" class="nav__menu" id="nav-menu">
+      <ul class="nav__list">
+        <li class="nav__item">
+          <a [routerLink]="['/home']" class="nav__link">Home</a>
+        </li>
+        <li class="nav__item">
+          <a [routerLink]="['/prodotti']" class="nav__link">Prodotti</a>
+        </li>
+        <li class="nav__item">
+          <a [routerLink]="['/cart']" class="nav__link">Carrello</a>
+        </li>
+        <li class="nav__item">
+          <a [routerLink]="['/profilo']" class="nav__link">Profilo</a>
+        </li>
+      </ul>
 
-      <div class="text text-header">
-        <span class="name">MisteryFootball</span> <br>
-        <span class="profession"> E-commerce</span>
+      <!-- Close Button -->
+      <div class="nav__close" (click)="toggleMenu()" id="nav-close">
+        <i class='bx bx-x'></i>
       </div>
     </div>
 
-    <i class='bx bx-chevron-right toggle'></i>
-  </header>
-
-  <div class="menu-bar">
-    <div class="menu">
-      <li class="search-box">
-          <i class='bx bx-search icon' ></i>
-          <input type="search" placeholder="Cerca...">
-      </li>
-      <ul class="menu-links">
-        <li class="nav-link">
-          <a [routerLink]="['/home']">
-            <i class='bx bx-home-alt icon'></i>
-            <span class="text nav-text">Home</span>
-          </a>
-        </li>
-        <li class="nav-link">
-          <a [routerLink]="['/prodotti']">
-            <i class='bx bx-closet icon' ></i>
-            <span class="text nav-text">Prodotti</span>
-          </a>
-        </li>
-        <li class="nav-link">
-          <a [routerLink]="['/cart']">
-            <i class='bx bx-cart icon' ></i>
-            <span class="text nav-text">Carrello</span>
-          </a>
-        </li>
-      </ul>
+    <!-- Toggle Button (Burger Icon) -->
+    <div class="nav__toggle" *ngIf="!menuOpen" (click)="toggleMenu()" id="nav-toggle">
+      <i class='bx bx-menu'></i>
     </div>
-
-    <div class="bottom-content">
-      <li class="nav-link">
-        <a [routerLink]="['/profilo']">
-          <i class='bx bx-user icon' ></i>
-          <span class="text nav-text">Profilo</span>
-        </a>
-      </li>
-
-      <li class="mode">
-        <div class="moon-sun">
-          <i class='bx bx-moon icon moon' ></i>
-          <i class='bx bx-sun icon sun' ></i>
-        </div>
-        <span class="mode-text text">Dark Mode</span>
-
-        <div class="toggle-switch">
-          <span class="switch"></span>
-        </div>
-      </li>
-    </div>
-  </div>
-</nav>
+  </nav>
+</header>
 
 <router-outlet></router-outlet>
-
-</main>
