@@ -4,7 +4,7 @@
     <br>
     <br>
     <div class="slider-wrapper">
-        <div class="card-list" [style.transform]="getTransformStyleSerieA()">
+        <div class="card-list" [style.transform]="getTransformStyle('serieA')">
             <div class="card-item" *ngFor="let product of serieAProducts">
                 <img class="user-image" [src]="product.image" alt="{{product.name}}">
                     <h2 class="user-name">{{product.name}}</h2>
@@ -17,20 +17,22 @@
 </div>
 
 <div class="btn-container">
-    <button class="btn" (click)="prevSlideSerieA()" [disabled]="currentIndexSerieA === 0">Prev</button>
-    <button class="btn" (click)="nextSlideSerieA()" [disabled]="(currentIndexSerieA + itemsPerPage) >= serieAProducts.length">Next</button>
+    <button class="btn" (click)="moveSlide('serieA','prev')">Prev</button>
+    <button class="btn" (click)="moveSlide('serieA','next')">Next</button>
 </div>
 
 <br>
 <br>
 
+<!-- Premier League Carousel -->
+
 <div class="container">
-    <!-- Premier League Carousel -->
+
     <h2>Prodotti Premier League</h2>
     <br>
     <br>
     <div class="slider-wrapper">
-        <div class="card-list" [style.transform]="getTransformStylePremier()">
+        <div class="card-list" [style.transform]="getTransformStyle('premier')">
             <div class="card-item" *ngFor="let product of premierProducts">
                 <img class="user-image" [src]="product.image" alt="{{product.name}}">
                     <h2 class="user-name">{{product.name}}</h2>
@@ -43,20 +45,22 @@
 </div>
 
 <div class="btn-container">
-    <button class="btn" (click)="prevSlidePremier()" [disabled]="currentIndexPremier === 0">Prev</button>
-    <button class="btn" (click)="nextSlidePremier()" [disabled]="(currentIndexPremier + itemsPerPage) >= premierProducts.length">Next</button>
+    <button class="btn" (click)="moveSlide('premier','prev')">Prev</button>
+    <button class="btn" (click)="moveSlide('premier','next')">Next</button>
 </div>
 
 <br>
 <br>
 
+<!-- La Liga Carousel -->
+
 <div class="container">
-    <!-- Popolari Carousel -->
+
     <h2>Prodotti La Liga</h2>
     <br>
     <br>
     <div class="slider-wrapper">
-        <div class="card-list" [style.transform]="getTransformStyleLaLiga()">
+        <div class="card-list" [style.transform]="getTransformStyle('laliga')">
             <div class="card-item" *ngFor="let product of laligaProducts">
                 <img class="user-image" [src]="product.image" alt="{{product.name}}">
                     <h2 class="user-name">{{product.name}}</h2>
@@ -69,20 +73,22 @@
 </div>
 
 <div class="btn-container">
-    <button class="btn" (click)="prevSlideLaLiga()" [disabled]="currentIndexLaLiga === 0">Prev</button>
-    <button class="btn" (click)="nextSlideLaLiga()" [disabled]="(currentIndexLaLiga + itemsPerPage) >= laligaProducts.length">Next</button>
+    <button class="btn" (click)="moveSlide('laliga','prev')">Prev</button>
+    <button class="btn" (click)="moveSlide('laliga','next')">Next</button>
 </div>
 
 <br>
 <br>
 
+<!-- MLS Carousel -->
+
 <div class="container">
-    <!-- Popolari Carousel -->
+
     <h2>Prodotti MLS</h2>
     <br>
     <br>
     <div class="slider-wrapper">
-        <div class="card-list">
+        <div class="card-list" [style.transform]="getTransformStyle('MLS')">
             <div class="card-item" *ngFor="let product of mlsProducts">
                 <img class="user-image" [src]="product.image" alt="{{product.name}}">
                     <h2 class="user-name">{{product.name}}</h2>
@@ -94,10 +100,10 @@
     </div>
 </div>
 
-<!-- <div class="btn-container">
-    <button class="btn" (click)="prevSlidePopular()" [disabled]="currentIndexPopular === 0">Prev</button>
-    <button class="btn" (click)="nextSlidePopular()" [disabled]="(currentIndexPopular + itemsPerPage) >= serieAProducts.length">Next</button>
-</div> -->
+<div class="btn-container">
+    <button class="btn" (click)="moveSlide('MLS','prev')">Prev</button>
+    <button class="btn" (click)="moveSlide('MLS','next')">Next</button>
+</div>
 
 <br>
-<br>
+<br> 

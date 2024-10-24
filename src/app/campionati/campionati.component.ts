@@ -19,6 +19,7 @@ export class CampionatiComponent {
   currentIndexSerieA: number = 0;
   currentIndexPremier: number = 0;
   currentIndexLaLiga: number = 0
+  currentIndexMLS: number = 0
   itemsPerPage: number = 3;
 
   /* Categorie */
@@ -48,60 +49,93 @@ export class CampionatiComponent {
     this.router.navigate(['/product', productId]);
   }
 
-  /* Movimenti Caroselli */
-
-  /* Serie A */
-
-  nextSlideSerieA() {
-    if (this.currentIndexSerieA + this.itemsPerPage < this.serieAProducts.length) {
-      this.currentIndexSerieA += this.itemsPerPage;
+    /**
+     * Metodo unico per spostare i caroselli avanti o indietro.
+     * @param carouselType Tipo di carosello (es. 'serieA', 'premier', 'laliga')
+     * @param direction Direzione del movimento ('next' per avanti, 'prev' per indietro)
+     */
+    moveSlide(carouselType: string, direction: 'next' | 'prev'): void {
+      let currentIndex: number;
+      let productsArray: any[];
+  
+      // Identifica il carosello
+      switch (carouselType) {
+        case 'serieA':
+          currentIndex = this.currentIndexSerieA;
+          productsArray = this.serieAProducts;
+          break;
+        case 'premier':
+          currentIndex = this.currentIndexPremier;
+          productsArray = this.premierProducts;
+          break;
+        case 'laliga':
+          currentIndex = this.currentIndexLaLiga;
+          productsArray = this.laligaProducts;
+          break;
+          case 'MLS':
+            currentIndex = this.currentIndexMLS;
+            productsArray = this.mlsProducts;
+            break;
+        default:
+          return; // Caso sconosciuto, non fare nulla
+      }
+  
+      // Calcola il nuovo indice in base alla direzione
+      if (direction === 'next') {
+        if (currentIndex + this.itemsPerPage < productsArray.length) {
+          currentIndex += this.itemsPerPage;
+        }
+      } else if (direction === 'prev') {
+        if (currentIndex - this.itemsPerPage >= 0) {
+          currentIndex -= this.itemsPerPage;
+        }
+      }
+  
+      // Aggiorna l'indice corrispondente
+      switch (carouselType) {
+        case 'serieA':
+          this.currentIndexSerieA = currentIndex;
+          break;
+        case 'premier':
+          this.currentIndexPremier = currentIndex;
+          break;
+        case 'laliga':
+          this.currentIndexLaLiga = currentIndex;
+          break;
+          case 'MLS':
+            this.currentIndexMLS = currentIndex;
+            break;
+      }
+    }
+  
+    /**
+     * Metodo unico per ottenere lo stile di trasformazione del carosello.
+     * @param carouselType Tipo di carosello (es. 'serieA', 'premier', 'laliga')
+     * @returns stringa CSS per la trasformazione
+     */
+    getTransformStyle(carouselType: string): string {
+      let currentIndex: number;
+  
+      // Identifica il carosello
+      switch (carouselType) {
+        case 'serieA':
+          currentIndex = this.currentIndexSerieA;
+          break;
+        case 'premier':
+          currentIndex = this.currentIndexPremier;
+          break;
+        case 'laliga':
+          currentIndex = this.currentIndexLaLiga;
+          break;
+          case 'MLS':
+            currentIndex = this.currentIndexMLS;
+            break;
+        default:
+          return '';
+      }
+  
+      // Calcola lo stile di trasformazione
+      return `translateX(-${(currentIndex * (100 / this.itemsPerPage))}%)`;
     }
   }
-
-  prevSlideSerieA() {
-    if (this.currentIndexSerieA - this.itemsPerPage >= 0) {
-      this.currentIndexSerieA -= this.itemsPerPage;
-    }
-  }
-
-  getTransformStyleSerieA(): string {
-    return `translateX(-${(this.currentIndexSerieA * (100 / this.itemsPerPage))}%)`;
-  }
-
-  /* Premier League */
-
-  nextSlidePremier() {
-    if (this.currentIndexPremier + this.itemsPerPage < this.premierProducts.length) {
-      this.currentIndexPremier += this.itemsPerPage;
-    }
-  }
-
-  prevSlidePremier() {
-    if (this.currentIndexPremier - this.itemsPerPage >= 0) {
-      this.currentIndexPremier -= this.itemsPerPage;
-    }
-  }
-
-  getTransformStylePremier(): string {
-    return `translateX(-${(this.currentIndexPremier * (100 / this.itemsPerPage))}%)`;
-  }
-
-  /* La Liga */
-
-  nextSlideLaLiga() {
-    if (this.currentIndexLaLiga + this.itemsPerPage < this.laligaProducts.length) {
-      this.currentIndexLaLiga += this.itemsPerPage;
-    }
-  }
-
-  prevSlideLaLiga() {
-    if (this.currentIndexLaLiga - this.itemsPerPage >= 0) {
-      this.currentIndexLaLiga -= this.itemsPerPage;
-    }
-  }
-
-  getTransformStyleLaLiga(): string {
-    return `translateX(-${(this.currentIndexLaLiga * (100 / this.itemsPerPage))}%)`;
-  }
-
-}
+  
