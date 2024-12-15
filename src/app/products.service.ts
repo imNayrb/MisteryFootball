@@ -10,7 +10,7 @@ export class ProductService {
     { 
       id: 0, 
       name: 'Maglietta Brasile',
-      price: 35.00, 
+      price: 35.00,   
       image: '/assets/Brasile-P.jpg',
       image2: '/assets/Brasile1.jpg',
       image3: '/assets/Brasile2.jpg',
@@ -165,6 +165,9 @@ export class ProductService {
     },
   ];
 
+  // Stato del carrello
+  private cart: { product: Product, quantity: number, size: string }[] = [];
+
   constructor() { }
 
   // Metodo per ottenere tutti i prodotti
@@ -179,9 +182,23 @@ export class ProductService {
     return filteredProducts;
   }
 
-  getProductById(id:number): Product | undefined{
-    return this.products.find(product => product.id === id)
+  getProductById(id: number): Product | undefined {
+    return this.products.find(product => product.id === id);
   }
   
+  addToCart(product: Product, quantity: number, size: string) {
+    const existingProduct = this.cart.find(item => item.product.id === product.id && item.size === size);
 
+    if (existingProduct) {
+      existingProduct.quantity += quantity;
+    } else {
+      this.cart.push({ product, quantity, size });
+    }
+
+    console.log('Carrello aggiornato:', this.cart);
+  }
+
+  getCart() {
+    return this.cart;
+  }
 }

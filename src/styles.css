@@ -16,6 +16,7 @@
     --text-color-light: hsl(0, 0, 60%);
     --body-color: hsl(0, 0%, 0%);
     --container-color: hsl(0, 0%, 8%);
+    --primary-color: #bd1719;
 
     --biggest-font-size: 2.75rem;
     --h1-font-size: 1.5rem;

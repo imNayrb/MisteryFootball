@@ -45,6 +45,11 @@
     }
 }
 
+.bx-cart::before{
+    display: contents;
+    font-size: 24px;
+}
+
 html{
     scroll-behavior: smooth;
 }
@@ -125,6 +130,7 @@ img{
     justify-content: space-between;
     align-items: center;
     background: var(--body-color);
+    margin: 0;
 }
 
 .nav__logo{
@@ -162,6 +168,7 @@ img{
 .nav__link{
     color: var(--title-color);
     font-weight: var(--font-medium);
+    cursor: pointer;
 }
 
 .nav__close{
@@ -202,3 +209,53 @@ img{
 
 
 }
+/* Stile per la barra laterale del carrello */
+.cart-drawer {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    width: 300px;
+    height: 100%;
+    background: #fff;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    overflow-y: auto;
+    transition: right 0.3s ease;
+    z-index: 99999999;
+  }
+  
+  .cart-drawer.open {
+    right: 0;
+  }
+  
+  .cart-item {
+    display: flex;
+    margin-bottom: 1rem;
+  }
+  
+  .cart-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    margin-right: 1rem;
+  }
+  
+  .cart-item-info h4 {
+    font-size: 1rem;
+    margin: 0;
+  }
+  
+  .checkout-button {
+    width: 100%;
+    padding: 1rem;
+    background: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .checkout-button:hover {
+    background: #0056b3;
+  }
+  
+  

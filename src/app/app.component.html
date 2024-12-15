@@ -1,4 +1,3 @@
-<!-- HTML Template (app.component.html) -->
 <header class="header">
   <nav class="nav container">
     <a href="" class="nav__logo">
@@ -15,24 +14,46 @@
           <a [routerLink]="['/prodotti']" class="nav__link">Prodotti</a>
         </li>
         <li class="nav__item">
-          <a [routerLink]="['/cart']" class="nav__link">Carrello</a>
+          <a [routerLink]="['/profilo']" class="nav__link">Profilo</a>
         </li>
         <li class="nav__item">
-          <a [routerLink]="['/profilo']" class="nav__link">Profilo</a>
+          <a class="nav__link" (click)="toggleCart()"><i class='bx bx-cart'></i></a>
         </li>
       </ul>
 
-      <!-- Close Button -->
       <div class="nav__close" (click)="toggleMenu()" id="nav-close">
         <i class='bx bx-x'></i>
       </div>
     </div>
 
-    <!-- Toggle Button (Burger Icon) -->
     <div class="nav__toggle" *ngIf="!menuOpen" (click)="toggleMenu()" id="nav-toggle">
       <i class='bx bx-menu'></i>
     </div>
   </nav>
 </header>
+
+<!-- Barra laterale per il Carrello -->
+<div class="cart-drawer" [ngClass]="{'open': cartOpen}">
+  <h2>Carrello</h2>
+  <ul *ngIf="cart.length > 0; else emptyCart">
+    <li *ngFor="let item of cart">
+      <div class="cart-item">
+        <img [src]="item.product.image" alt="{{ item.product.name }}" />
+        <div class="cart-item-info">
+          <h4>{{ item.product.name }}</h4>
+          <p>Taglia: {{ item.size }}</p>
+          <p>Quantità: {{ item.quantity }}</p>
+          <p>Prezzo: {{ item.product.price | currency:'EUR':'€':'1.2-2':'it' }}</p>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <ng-template #emptyCart>
+    <p>Il carrello è vuoto</p>
+  </ng-template>
+  <button class="checkout-button">Checkout</button>
+</div>
+
+
 
 <router-outlet></router-outlet>

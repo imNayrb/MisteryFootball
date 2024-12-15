@@ -1,7 +1,15 @@
 import { Component } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { ProductService } from './products.service';
 
+interface CartItem {
+  id: number;
+  name: string;
+  price: number;
+  quantity: number;
+  image: string;
+}
 
 @Component({
   selector: 'app-root',
@@ -11,10 +19,37 @@ import { CommonModule } from '@angular/common';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  menuOpen = false; // Variabile che gestisce lo stato del menu
+  cart: any[] = [];
+  menuOpen = false;
+  cartOpen: boolean = false;
+  cartItems: CartItem[] = [];
+
+  constructor(private productService: ProductService) {}
 
   toggleMenu() {
-    this.menuOpen = !this.menuOpen; // Cambia lo stato del menu (aperto/chiuso)
+    this.menuOpen = !this.menuOpen; 
+  }
+
+  toggleCart(): void {
+    this.cartOpen = !this.cartOpen;
+  }
+
+  addToCart(product: CartItem): void {
+    const existingItem = this.cartItems.find(item => item.id === product.id);
+    if (existingItem) {
+      existingItem.quantity += product.quantity;
+    } else {
+      this.cartItems.push(product);
+    }
+  }
+
+  getCartTotal(): number {
+    return this.cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+  }
+
+  getCartItems() {
+    return this.productService.getCart();
   }
 }
+
 
