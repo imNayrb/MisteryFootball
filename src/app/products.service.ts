@@ -201,4 +201,22 @@ export class ProductService {
   getCart() {
     return this.cart;
   }
+
+  removeFromCart(product: Product, size: string): void {
+    this.cart = this.cart.filter(item => !(item.product.id === product.id && item.size === size));
+    this.updateLocalStorage();
+  }
+  
+  updateCartItem(product: Product, quantity: number, size: string): void {
+    const existingItem = this.cart.find(item => item.product.id === product.id && item.size === size);
+    if (existingItem) {
+      existingItem.quantity = quantity;
+    }
+    this.updateLocalStorage();
+  }
+  
+  private updateLocalStorage(): void {
+    localStorage.setItem('cart', JSON.stringify(this.cart));
+  }
+
 }
