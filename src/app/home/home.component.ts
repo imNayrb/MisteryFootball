@@ -1,16 +1,20 @@
 import { Component } from '@angular/core';
-import { RouterOutlet, Route } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { ProductCarouselComponent } from "../product-carousel/product-carousel.component";
-import { PopularProductsComponent } from "../popular-products/popular-products.component";
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterOutlet, ProductCarouselComponent, PopularProductsComponent, CommonModule],
+  imports: [ProductCarouselComponent, CommonModule, RouterModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
 
+  constructor(private router: Router) {}
+
+    navigateToSection(category: string) {
+    this.router.navigate(['/prodotti'], { fragment: category + '-carousel' });
+  }
 }

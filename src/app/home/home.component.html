@@ -17,28 +17,28 @@
                 Scopri il mondo delle magliette da calcio, comprese le vintage, da ogni campionato immaginabile!
             </p>
 
-            <a href="" class="button">
+            <a [routerLink]="['/prodotti']" class="button">
                 Scopri di Piu <i class='bx bx-right-arrow-alt' ></i>
             </a>
         </div>
 
         <div class="home__cards grid">
-            <article class="home__card">
+            <article class="home__card" (click)="navigateToSection('serieA')">
                 <img src="/assets/SerieA.jpg" alt="" class="home__card-img">
                 <h3 class="home__card-title">Serie A</h3>
                 <div class="home__card-shadow"></div>
             </article>
-            <article class="home__card">
+            <article class="home__card" (click)="navigateToSection('premier')">
                 <img src="/assets/PremierLeague.png" alt="" class="home__card-img">
                 <h3 class="home__card-title">Premier League</h3>
                 <div class="home__card-shadow"></div>
             </article>
-            <article class="home__card">
+            <article class="home__card" (click)="navigateToSection('laliga')">
                 <img src="/assets/Bundesliga.png" alt="" class="home__card-img">
                 <h3 class="home__card-title">Bundesliga</h3>
                 <div class="home__card-shadow"></div>
             </article>
-            <article class="home__card">
+            <article class="home__card" (click)="navigateToSection('MLS')">
                 <img src="/assets/Ligue1.png" alt="" class="home__card-img">
                 <h3 class="home__card-title">Ligue 1</h3>
                 <div class="home__card-shadow"></div>
@@ -59,7 +59,7 @@
                 Le nostre magliette sono in vendita per tutti gli appassionati di calcio e non solo, sempre più le maglie da calcio fanno parte degli abbigliamenti di tutti grazie allo scoppiare dello streetwear, questo sito è studiato anche per gli appassionati di quest'ultimo
             </p>
 
-            <a href="" class="button">Scopri le nostre magliette <i class='bx bx-right-arrow-alt' ></i></a>
+            <a [routerLink]="['/prodotti']" class="button">Scopri le nostre magliette <i class='bx bx-right-arrow-alt' ></i></a>
         </div>
 
         <div class="about__image">
@@ -82,7 +82,7 @@
     </h2>
 
     <div class="popular__container container grid">
-        <article class="popular__card">
+        <article class="popular__card" [routerLink]="['/product', 5]">
             <div class="popular__image">
                 <img src="/assets/NapoliStadio.jpg" alt="" class="popular__img">
                 <div class="popular__shadow"></div>
@@ -98,7 +98,7 @@
             </div>
         </article>
 
-        <article class="popular__card">
+        <article class="popular__card" [routerLink]="['/product', 6]" >
             <div class="popular__image">
                 <img src="/assets/ArsenalStadio.jpg" alt="" class="popular__img">
                 <div class="popular__shadow"></div>
@@ -151,10 +151,6 @@
                 </p>
             </div>
 
-            <div class="explore__user">
-                <img src="/assets/SerieA.jpg" alt="" class="explore__perfil">
-                <span class="explore__name">Palle</span>
-            </div>
         </div>
     </div>
 </section>

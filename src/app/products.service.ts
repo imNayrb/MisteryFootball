@@ -140,7 +140,7 @@ export class ProductService {
       categories: ['mls'] 
     },
     { 
-      id: 9, 
+      id: 10, 
       name: 'Maglietta Valencia', 
       price: 35.00, 
       image: '/assets/Valencia-P.jpg',
@@ -152,7 +152,7 @@ export class ProductService {
       categories: ['laliga'] 
     },
     { 
-      id: 10, 
+      id: 11, 
       name: 'Maglietta Inter', 
       price: 35.00, 
       image: '/assets/Inter-P.jpg',

@@ -130,7 +130,6 @@ button {
 }
 
 .checkout-button {
-  padding: 10px 20px;
   background-color: #ff6f61;
   color: #fff;
   border: none;
@@ -139,6 +138,7 @@ button {
   font-size: 16px;
   font-weight: bold;
   transition: background-color 0.3s ease;
+  width: 25%;
 }
 
 .checkout-button:hover {

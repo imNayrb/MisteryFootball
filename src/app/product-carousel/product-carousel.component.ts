@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ProductService } from '../products.service';
 import { CommonModule } from '@angular/common';
 import { registerLocaleData } from '@angular/common';
 import localeIt from '@angular/common/locales/it';
-import { Router, RouterModule } from '@angular/router';
+import { Router, RouterModule, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs';
 
 registerLocaleData(localeIt);
-
 
 @Component({
   selector: 'app-product-carousel',
@@ -15,7 +15,7 @@ registerLocaleData(localeIt);
   templateUrl: './product-carousel.component.html',
   styleUrls: ['./product-carousel.component.css']
 })
-export class ProductCarouselComponent implements OnInit {
+export class ProductCarouselComponent implements OnInit, AfterViewInit {
   currentIndexPopular: number = 0;
   currentIndexOnSale: number = 0;
   itemsPerPage: number = 3;
@@ -41,6 +41,24 @@ export class ProductCarouselComponent implements OnInit {
     this.laligaProducts = this.productService.getProductsByCategory('laliga');
     this.premierProducts = this.productService.getProductsByCategory('premier');
     this.ligue1Products = this.productService.getProductsByCategory('ligue1');
+  }
+
+  ngAfterViewInit() {
+    // Intercetta il cambiamento del frammento e fai scroll sulla sezione
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      const fragment = this.router.url.split('#')[1];
+      if (fragment) {
+        const element = document.getElementById(fragment);
+        if (element) {
+          // Utilizza il setTimeout per assicurarti che l'elemento sia pronto
+          setTimeout(() => {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }, 200); // Attendi un attimo per permettere la visualizzazione dell'elemento
+        }
+      }
+    });
   }
 
   // Metodi per il carosello "Popular"
@@ -80,6 +98,9 @@ export class ProductCarouselComponent implements OnInit {
   navigateToProduct(productId: number) {
     this.router.navigate(['/product', productId]);
   }
+
+  // Metodo per navigare ai frammenti delle sezioni specifiche
+  navigateToSection(category: string) {
+    this.router.navigate([], { fragment: category + '-carousel' });
+  }
 }
-
-

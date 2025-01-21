@@ -1,60 +1,35 @@
-<div *ngIf="product" class="small-container single-product">
-    <div class="row">
-      <div class="col-2">
-        <img [src]="displayedImage" alt="{{ product.name }}" id="ProductImg" />
-        <div class="small-img-row">
-          <div class="small-img-col" *ngFor="let img of [product.image, product.image2, product.image3, product.image4, product.image5]; let i = index">
-            <img *ngFor="let image of [product?.image, product?.image2, product?.image3, product?.image4, product?.image5]; let i = index"
-            [src]="image"
-            (click)="changeImage(image)"
-            alt="Product Image">       
-          </div>
+<!-- <div *ngIf="product" class="small-container single-product">
+  <div class="row">
+    <div class="col-2">
+      <img [src]="displayedImage" alt="{{ product.name }}" id="ProductImg" />
+      
+      <div class="small-img-row">
+        <div class="small-img-col" *ngFor="let img of [product.image, product.image2, product.image3, product.image4, product.image5]; let i = index">
+          <img [src]="img" (click)="changeImage(img)" alt="Product Image">
         </div>
       </div>
-      <div class="col-3">
-        <h1>{{ product.name }}</h1>
-        <h4>{{ product.price | currency:'EUR':'€':'1.2-2':'it' }}</h4>
-        <div class="roba">
+    </div>
+    
+    <div class="col-2 prodotto">
+      <h1>{{ product.name }}</h1>
+      <h4>{{ product.price | currency:'EUR':'€':'1.2-2':'it' }}</h4>
+      <div class="roba">
+        <div class="sec">
           <label for="size">Taglia:</label>
           <select id="size" [(ngModel)]="selectedSize">
             <option *ngFor="let size of sizes" [value]="size">{{ size }}</option>
           </select>
-  
+        </div>
+    
+        <div class="sec">
           <label for="quantity">Quantità:</label>
           <input id="quantity" type="number" [(ngModel)]="quantity" min="1" value="1" />
-  
-          <button class="message-button" (click)="addToCart()">Aggiungi al carrello</button>
         </div>
       </div>
+      <button class="message-button" (click)="addToCart()">Aggiungi al carrello</button>
     </div>
-  </div>  
-
-
-<script>
-    var ProductImg = document.getElementById("ProductImg");
-    var SmallImg = document.getElementsByClassName("small-img");
-
-     SmallImg[0].onclick = function() 
-     {
-        ProductImg.src = SmallImg[0].src;
-     }
-
-     SmallImg[1].onclick = function() 
-     {
-        ProductImg.src = SmallImg[1].src;
-     }
-
-     SmallImg[2].onclick = function() 
-     {
-        ProductImg.src = SmallImg[2].src;
-     }
-
-     SmallImg[3].onclick = function() 
-     {
-        ProductImg.src = SmallImg[3].src;
-     }
-
-</script>
+    
+</div>  -->
 
 
 
@@ -62,21 +37,52 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<div class="card" *ngIf="product">
+  <div class="left">
+    <img src="" alt="star wars" class="wordmark">
+  </div>
+  <div class="right">
+    <div class="helmet">
+      <div class="large-img-container">
+        <img [src]="displayedImage" alt="Product Image" class="large-img">
+      </div>
+      <div class="small-img-row">
+        <div class="small-img-col" *ngFor="let img of [product?.image, product?.image2, product?.image3, product?.image4]; let i = index">
+          <img 
+            [src]="img" 
+            *ngIf="img" 
+            (click)="changeImage(img)" 
+            alt="Product Image" 
+            class="small-img"
+            [class.selected]="img === displayedImage">
+        </div>
+      </div>
+      
+    </div>
+    <div class="productInfo">
+      <h1>{{ product.name }}</h1>
+      <h2>{{ product.price | currency:'EUR':'€':'1.2-2':'it' }}</h2>
+      <div class="details">
+        <div class="size">
+          <h4>Seleziona una taglia</h4>
+          <p *ngFor="let size of sizes" 
+            [class.selected]="size === selectedSize" 
+            (click)="selectSize(size)">
+            {{ size }}
+          </p>
+        </div>        
+        <div class="size">
+          <h4>Seleziona una quantità</h4>
+          <div class="quantity-options">
+            <p *ngFor="let qty of quantities" 
+              [class.selected]="qty === quantity" 
+              (click)="selectQuantity(qty)">
+              {{ qty }}
+            </p>
+          </div>
+        </div>
+      </div>
+      <button (click)="addToCart()">Aggiungi al carrello</button>
+    </div>
+  </div>
+</div>

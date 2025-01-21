@@ -95,7 +95,7 @@ h2{
 }
 
 .message-button:hover {
-    background: var(--primary-color);
+    background: #CB2140;
     border: 1px solid transparent;
     color: #fff;
 }
