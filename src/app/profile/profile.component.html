@@ -1,0 +1,8 @@
+<!-- profile.component.html -->
+<div *ngIf="user">
+    <h2>Welcome, {{ user.username }}!</h2>
+    <p>Here are your profile details:</p>
+    <pre>{{ user | json }}</pre>
+    <button (click)="logout()">Logout</button>
+  </div>
+  

@@ -25,10 +25,12 @@ button:focus {
 .card .left {
   width: 480px;
   height: 553px;
-  background: #CC3843;
   border-radius: 23px;
   display: flex;
   align-items: center;
+  opacity: 1;
+  background-image: radial-gradient(#ffffff 0.5px, #CC3843 0.5px);
+  background-size: 10px 10px;
 }
 
 .card .left .wordmark {
