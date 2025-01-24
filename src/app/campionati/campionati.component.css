@@ -33,9 +33,9 @@ h2{
 
 .container{
     position: relative;
-    max-width: 80%; /* Adjust based on your design */
+    max-width: 80%;
     margin-top: 30px;
-    overflow-x: hidden; /* Hide overflow for slides */
+    overflow-x: hidden;
 }
 
 .price{
@@ -47,7 +47,7 @@ h2{
 
 .card-list {
     display: flex;
-    transition: transform 0.5s ease; /* Smooth transition */
+    transition: transform 0.5s ease;
     width: 1000px;
     gap: 10px;
 }
@@ -60,7 +60,7 @@ h2{
     align-items: center;
     text-align: center;
     padding: 25px;
-    background: rgba(225, 225, 225, 0.2);
+    background:#0c1f2c;
     border-radius: 8px;
     border: 1px solid var(--primary-color-light);
     backdrop-filter: blur(30px);
@@ -85,17 +85,17 @@ h2{
 .message-button {
     font-size: 1.25rem;
     padding: 10px 35px;
-    color: #030728;
+    color: #fff;
     border-radius: 6px;
     font-weight: 500;
     cursor: pointer;
-    background: #fff;
+    background: #CC3843;
     border: 1px solid transparent;
     transition: 0.7s ease;
 }
 
 .message-button:hover {
-    background: var(--primary-color);
+    background: #CB2140;
     border: 1px solid transparent;
     color: #fff;
 }
