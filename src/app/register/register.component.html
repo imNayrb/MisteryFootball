@@ -15,6 +15,17 @@
 <form (submit)="register()">
   <h3>Registrazione</h3>
 
+<div class="name">
+  <div class="campo">
+    <label for="nome">Nome</label>
+    <input type="text" [(ngModel)]="nome" name="nome" id="nome" required>
+  </div>
+  <div class="campo">
+    <label for="cognome">Cognome</label>
+    <input type="text" [(ngModel)]="cognome" name="cognome" id="cognome" required>
+  </div>
+</div>
+
   <label for="email">Email</label>
   <input type="email" [(ngModel)]="email" name="email" id="email" required>
 
@@ -23,7 +34,7 @@
 
   <button type="submit">Registrati</button>
   <div class="social">
-    <div class="go"><i class="fab fa-google"></i>Hai gia un account? Accedi</div>
+    <div (click)="login()" class="login"><i class="fab fa-google"></i>Hai gia un account? Accedi</div>
   </div>
 </form>
 <p *ngIf="message">{{ message }}</p>

@@ -110,3 +110,7 @@ button{
 .social i{
   margin-right: 4px;
 }
+
+.register{
+    cursor: pointer;
+}

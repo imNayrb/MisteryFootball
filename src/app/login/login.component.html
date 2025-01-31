@@ -21,7 +21,7 @@
 
   <button>Accedi</button>
   <div class="social">
-    <div class="go">Non hai un account? Registrati</div>
+    <div (click)="register()" class="register">Non hai un account? Registrati</div>
   </div>
 </form>
 <p *ngIf="message">{{ message }}</p>

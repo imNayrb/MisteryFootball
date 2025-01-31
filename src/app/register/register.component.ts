@@ -13,11 +13,13 @@ import { FormsModule } from '@angular/forms';
 })
 export class RegisterComponent {
   @Output() toggleFormEvent = new EventEmitter<void>();
+  nome = '';
+  cognome = '';
   email = '';
   password = '';
   message = '';
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   register() {
     console.log("Valori attuali:", { email: this.email, password: this.password });
@@ -27,7 +29,7 @@ export class RegisterComponent {
       return;
     }
   
-    this.authService.register(this.email, this.password).subscribe({
+    this.authService.register(this.email, this.password, this.nome, this.cognome).subscribe({
       next: (response) => {
         this.message = response.message;
       },
@@ -36,9 +38,8 @@ export class RegisterComponent {
       }
     });
   }
-
-  toggleForm() {
-    this.toggleFormEvent.emit(); 
-  }
   
+  login() {
+    this.router.navigate(['/login'])
+  }
 }
