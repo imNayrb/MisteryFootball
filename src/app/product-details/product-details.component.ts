@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../products.service';
 import { Product } from '../product';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-product-details',
@@ -19,9 +20,12 @@ export class ProductDetailsComponent implements OnInit {
   displayedImage: string = ''; 
   sizes: string[] = ['S', 'M', 'L', 'XL']; 
   quantities: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; 
+  isLoggedIn: boolean = false;
 
   constructor(
+    private authService: AuthService,
     private route: ActivatedRoute,
+    private router: Router,
     private productService: ProductService 
   ) {}
 
@@ -40,6 +44,8 @@ export class ProductDetailsComponent implements OnInit {
   
     this.selectedSize = localStorage.getItem('selectedSize') || '';
     this.quantity = Number(localStorage.getItem('selectedQuantity')) || 1;
+
+    this.isLoggedIn = !!localStorage.getItem('jwt')
   }
   
 
@@ -62,11 +68,15 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   addToCart(): void {
-    if (this.product && this.selectedSize && this.quantity > 0) {
-      this.productService.addToCart(this.product, this.quantity, this.selectedSize);
-      alert('Prodotto aggiunto al carrello!');
+    if (this.authService.isAuthenticated()) {
+      if (this.product && this.selectedSize && this.quantity > 0) {
+        this.productService.addToCart(this.product, this.quantity, this.selectedSize);
+        alert('Prodotto aggiunto al carrello!');
+      } else {
+        alert('Seleziona una taglia e una quantità valida!');
+      }
     } else {
-      alert('Seleziona una taglia e una quantità valida!');
+      alert('Per aggiungere un prodotto al carrello, devi prima effettuare il login!');
     }
-  }
+  }  
 }
