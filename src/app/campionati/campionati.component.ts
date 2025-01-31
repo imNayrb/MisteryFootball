@@ -34,16 +34,25 @@ export class CampionatiComponent {
   constructor(private productService: ProductService, private router: Router) {}
 
   ngOnInit() {
-    // Ottieni i prodotti per le diverse categorie
-    this.serieAProducts = this.productService.getProductsByCategory('serie A');
-    this.mlsProducts = this.productService.getProductsByCategory('mls');
-    this.bundesligaProducts = this.productService.getProductsByCategory('bundes');
-    this.laligaProducts = this.productService.getProductsByCategory('laliga');
-    this.premierProducts = this.productService.getProductsByCategory('premier');
-    this.ligue1Products = this.productService.getProductsByCategory('ligue1');
+    this.productService.getProductsByCategory('serie A').subscribe((products) => {
+      this.serieAProducts = products;
+    });
+    this.productService.getProductsByCategory('mls').subscribe((products) => {
+      this.mlsProducts = products;
+    });
+    this.productService.getProductsByCategory('bundes').subscribe((products) => {
+      this.bundesligaProducts = products;
+    });
+    this.productService.getProductsByCategory('laliga').subscribe((products) => {
+      this.laligaProducts = products;
+    });
+    this.productService.getProductsByCategory('premier').subscribe((products) => {
+      this.premierProducts = products;
+    });
+    this.productService.getProductsByCategory('ligue1').subscribe((products) => {
+      this.ligue1Products = products;
+    });
   }
-
-  /* Aprire Dettagli Prodotto */
 
   navigateToProduct(productId: number) {
     this.router.navigate(['/product', productId]);
@@ -115,8 +124,7 @@ export class CampionatiComponent {
      */
     getTransformStyle(carouselType: string): string {
       let currentIndex: number;
-  
-      // Identifica il carosello
+
       switch (carouselType) {
         case 'serieA':
           currentIndex = this.currentIndexSerieA;
@@ -133,8 +141,7 @@ export class CampionatiComponent {
         default:
           return '';
       }
-  
-      // Calcola lo stile di trasformazione
+
       return `translateX(-${(currentIndex * (100 / this.itemsPerPage))}%)`;
     }
   }

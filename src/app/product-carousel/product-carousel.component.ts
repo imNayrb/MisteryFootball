@@ -31,20 +31,34 @@ export class ProductCarouselComponent implements OnInit, AfterViewInit {
 
   constructor(private productService: ProductService, private router: Router) { }
 
-  ngOnInit() {
-    // Ottieni i prodotti per le diverse categorie
-    this.popularProducts = this.productService.getProductsByCategory('popular');
-    this.serieAProducts = this.productService.getProductsByCategory('serie A');
-    this.nationalProducts = this.productService.getProductsByCategory('national');
-    this.mlsProducts = this.productService.getProductsByCategory('mls');
-    this.bundesligaProducts = this.productService.getProductsByCategory('bundes');
-    this.laligaProducts = this.productService.getProductsByCategory('laliga');
-    this.premierProducts = this.productService.getProductsByCategory('premier');
-    this.ligue1Products = this.productService.getProductsByCategory('ligue1');
-  }
+    ngOnInit() {
+      this.productService.getProductsByCategory('serie A').subscribe((products) => {
+        this.serieAProducts = products;
+      });
+      this.productService.getProductsByCategory('mls').subscribe((products) => {
+        this.mlsProducts = products;
+      });
+      this.productService.getProductsByCategory('bundes').subscribe((products) => {
+        this.bundesligaProducts = products;
+      });
+      this.productService.getProductsByCategory('laliga').subscribe((products) => {
+        this.laligaProducts = products;
+      });
+      this.productService.getProductsByCategory('premier').subscribe((products) => {
+        this.premierProducts = products;
+      });
+      this.productService.getProductsByCategory('ligue1').subscribe((products) => {
+        this.ligue1Products = products;
+      });
+      this.productService.getProductsByCategory('popular').subscribe((products) => {
+        this.popularProducts = products;
+      });
+      this.productService.getProductsByCategory('national').subscribe((products) => {
+        this.nationalProducts = products;
+      });
+    }
 
   ngAfterViewInit() {
-    // Intercetta il cambiamento del frammento e fai scroll sulla sezione
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe(() => {
@@ -52,16 +66,14 @@ export class ProductCarouselComponent implements OnInit, AfterViewInit {
       if (fragment) {
         const element = document.getElementById(fragment);
         if (element) {
-          // Utilizza il setTimeout per assicurarti che l'elemento sia pronto
           setTimeout(() => {
             element.scrollIntoView({ behavior: 'smooth' });
-          }, 200); // Attendi un attimo per permettere la visualizzazione dell'elemento
+          }, 200);
         }
       }
     });
   }
 
-  // Metodi per il carosello "Popular"
   nextSlidePopular() {
     if (this.currentIndexPopular + this.itemsPerPage < this.popularProducts.length) {
       this.currentIndexPopular += this.itemsPerPage;
@@ -78,7 +90,6 @@ export class ProductCarouselComponent implements OnInit, AfterViewInit {
     return `translateX(-${(this.currentIndexPopular * (100 / this.itemsPerPage))}%)`;
   }
 
-  // Metodi per il carosello "On Sale"
   nextSlideOnSale() {
     if (this.currentIndexOnSale + this.itemsPerPage < this.serieAProducts.length) {
       this.currentIndexOnSale += this.itemsPerPage;
@@ -99,7 +110,6 @@ export class ProductCarouselComponent implements OnInit, AfterViewInit {
     this.router.navigate(['/product', productId]);
   }
 
-  // Metodo per navigare ai frammenti delle sezioni specifiche
   navigateToSection(category: string) {
     this.router.navigate([], { fragment: category + '-carousel' });
   }

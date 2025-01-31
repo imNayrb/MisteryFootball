@@ -1,0 +1,28 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="background">
+  <div class="shape"></div>
+  <div class="shape"></div>
+</div>
+<form (submit)="login()">
+  <h3>Accedi</h3>
+
+  <label for="email">Email</label>
+  <input type="email" [(ngModel)]="email" name="email" id="email" required>
+
+  <label for="password">Password</label>
+  <input type="password" [(ngModel)]="password" name="password" required id="password">
+
+  <button>Accedi</button>
+  <div class="social">
+    <div class="go">Non hai un account? Registrati</div>
+  </div>
+</form>
+<p *ngIf="message">{{ message }}</p>
+  

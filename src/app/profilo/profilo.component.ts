@@ -1,22 +1,27 @@
-import { Component, OnInit } from '@angular/core';
-import { LoginComponent } from '../llogin/llogin.component';
-import { ProfileComponent } from '../profile/profile.component';
-import { AuthService } from '../auth.service';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profilo',
   standalone: true,
-  imports: [LoginComponent, ProfileComponent, CommonModule],
+  imports: [CommonModule],
   templateUrl: './profilo.component.html',
   styleUrl: './profilo.component.css'
 })
-export class ProfiloComponent implements OnInit {
-  isAuthenticated: boolean = false;
+export class ProfiloComponent {
+  
+  isLoginForm: boolean = true;
 
-  constructor(private authService: AuthService) {}
+  toggleForm() {
+    this.isLoginForm = !this.isLoginForm;
+  }
 
-  ngOnInit(): void {
-    this.isAuthenticated = this.authService.isAuthenticated();
+  constructor(private authService: AuthService, private router: Router) {}
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/login'])
   }
 }

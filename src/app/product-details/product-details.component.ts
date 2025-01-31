@@ -27,17 +27,21 @@ export class ProductDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     const productId = Number(this.route.snapshot.paramMap.get('id'));
-    this.product = this.productService.getProductById(productId);
+    
+    this.productService.getProductById(productId).subscribe((product) => {
+      this.product = product;
 
-    if (this.product && this.product.image) {
-      this.displayedImage = this.product.image;
-    } else {
-      this.displayedImage = '/assets/fallback-image.jpg';
-    }
-
+      if (this.product && this.product.image) {
+        this.displayedImage = this.product.image;
+      } else {
+        this.displayedImage = '/assets/fallback-image.jpg';
+      }
+    });
+  
     this.selectedSize = localStorage.getItem('selectedSize') || '';
     this.quantity = Number(localStorage.getItem('selectedQuantity')) || 1;
   }
+  
 
   selectSize(size: string): void {
     this.selectedSize = size;
