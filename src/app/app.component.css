@@ -258,4 +258,8 @@ img{
     background: #0056b3;
   }
   
-  
+  .login{
+    background: #CC3843;
+    padding: 7px;
+    border-radius: 10px;
+  }

@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:8080/api/auth';
+  private apiUrl = 'http://localhost:8080/api/auth'; 
   private loggedIn = new BehaviorSubject<boolean>(this.isLoggedIn()); 
   loggedIn$ = this.loggedIn.asObservable(); 
 
@@ -20,7 +20,11 @@ export class AuthService {
   }
 
   login(email: string, password: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/login`, { email, password });
+    return this.http.post(`${this.apiUrl}/login`, { email, password }).pipe(
+      tap((response: any) => {
+        this.saveToken(response.token); 
+      })
+    );
   }
 
   isLoggedIn(): boolean {
@@ -29,7 +33,7 @@ export class AuthService {
 
   saveToken(token: string): void {
     localStorage.setItem('auth_token', token);
-    this.loggedIn.next(true);
+    this.loggedIn.next(true); 
   }
 
   getToken(): string | null {
@@ -42,7 +46,23 @@ export class AuthService {
   }
 
   logout(): void {
-    localStorage.removeItem('auth_token');
-    this.loggedIn.next(false);
+    localStorage.removeItem('auth_token'); 
+    this.loggedIn.next(false); 
+  }
+
+  getAllUsers(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/users`);
+  }
+
+  getLoggedInUser(): Observable<any> {
+    const token = this.getToken();
+
+    if (!token) {
+      return new Observable(observer => observer.error('Utente non autenticato'));
+    }
+
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.http.get(`${this.apiUrl}/me`, { headers });
   }
 }

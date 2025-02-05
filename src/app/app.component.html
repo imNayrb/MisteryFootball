@@ -8,6 +8,9 @@
     <div [ngClass]="{'show-menu': menuOpen}" class="nav__menu" id="nav-menu">
       <ul class="nav__list">
         <li class="nav__item">
+          <a *ngIf="!isLoggedIn" [routerLink]="['/login']" class="nav__link login">Login</a>
+        </li>
+        <li class="nav__item">
           <a [routerLink]="['/home']" class="nav__link">Home</a>
         </li>
         <li class="nav__item">

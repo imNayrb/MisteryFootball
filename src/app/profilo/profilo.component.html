@@ -5,10 +5,13 @@
 <br>
 <br>
 <br>
-<br>
-<br>
 
-<p>PALLE</p>
+<div class="profile-container">
+  <div class="container">
 
-<button (click)="logout()">Logout</button>
-  
+    <div class="profile-info-container">
+      <div class="profile-details">
+        <h3>Ciao {{user.nome | titlecase}} {{user.cognome | titlecase}} {{user.email}}</h3>
+    </div>
+      <button class="btn btn-secondary" (click)="logout()">Esci</button>
+</div>

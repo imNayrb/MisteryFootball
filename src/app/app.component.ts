@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ProductService } from './products.service';
+import { AuthService } from './auth.service';
 
 interface CartItem {
   id: number;
@@ -23,8 +24,15 @@ export class AppComponent {
   menuOpen = false;
   cartOpen: boolean = false;
   cartItems: CartItem[] = [];
+  isLoggedIn: boolean = false;
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService, private AuthService: AuthService) {}
+
+  ngOnInit(): void {
+    this.AuthService.loggedIn$.subscribe(isLoggedIn => {
+      this.isLoggedIn = isLoggedIn;
+    })
+  }
 
   toggleMenu() {
     this.menuOpen = !this.menuOpen; 
