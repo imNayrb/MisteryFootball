@@ -5,13 +5,36 @@
 <br>
 <br>
 <br>
-
+<div class="background">
+  <div class="shape"></div>
+  <div class="shape"></div>
+</div>
 <div class="profile-container">
-  <div class="container">
 
-    <div class="profile-info-container">
-      <div class="profile-details">
-        <h3>Ciao {{user.nome | titlecase}} {{user.cognome | titlecase}} {{user.email}}</h3>
+  <div class="profile-details">
+    <h1>Ciao
+      {{user.nome | titlecase}} {{user.cognome | titlecase}}</h1>
+  </div>
+
+  <div class="icon-cards">
+    <div class="icon-card">
+      <i class='bx bx-package'></i>
+      <p>Ordini</p>
     </div>
-      <button class="btn btn-secondary" (click)="logout()">Esci</button>
+    <div class="icon-card">
+      <i class='bx bx-user'></i>
+      <p>Modifica Profilo</p>
+    </div>
+    <div class="icon-card">
+      <i class='bx bx-gift'></i>
+      <p>Riscatta Codici</p>
+    </div>
+    <div class="icon-card">
+      <i class='bx bx-wallet'></i>
+      <p>€5,00</p>
+    </div>
+  </div>
+
+  <button class="btn btn-secondary" (click)="logout()">Esci</button>
+
 </div>
