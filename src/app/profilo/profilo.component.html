@@ -13,10 +13,9 @@
 
 <div class="profile-container">
   <div class="sidebar">
-    <div class="user-info">
-      <span>{{ user.nome | titlecase }} {{ user.cognome | titlecase }}</span>
-      <i class='bx bx-user'></i>
-    </div>
+      <button
+        (click)="setActiveContent('default')"
+        [ngClass]="{'active': activeContent === 'default'}">{{ user.nome | titlecase }} {{ user.cognome | titlecase }}<i class='bx bx-user'></i></button>
     
     <div class="button-container">
       <button 
@@ -44,18 +43,26 @@
   <!-- Card a destra con contenuti dinamici -->
   <div class="card-2">
 
-    <div *ngIf="activeContent === 'modifica'">
-      <div class="card">
-        <h2>Modifica Profilo</h2>
-        <label>Nome:</label>
-        <input type="text" [(ngModel)]="user.nome" />
+    <div class="form" *ngIf="activeContent === 'modifica'">
+
+      <div class="edit">
+        <h1>Modifica Profilo</h1>
+
+        <div class="campo">
+          <label>Nome:</label>
+          <input type="text" [(ngModel)]="user.nome" />
+        </div>
       
-        <label>Cognome:</label>
-        <input type="text" [(ngModel)]="user.cognome" />
-      
-        <label>Email:</label>
-        <input type="email" [(ngModel)]="user.email" />
-      
+        <div class="campo">
+          <label>Cognome:</label>
+          <input type="text" [(ngModel)]="user.cognome" />
+        </div>
+
+        <div class="campo">
+          <label>Email:</label>
+          <input type="email" [(ngModel)]="user.email" />
+        </div>
+
         <button (click)="updateUser()">Salva Modifiche</button>
       </div>
       
@@ -71,6 +78,11 @@
 
     <div *ngIf="activeContent === 'vediamo'">
       <p>Contenuto per Mo Vediamo</p>
+    </div>
+
+    <div *ngIf="activeContent === 'default'">
+      <h1>Ciao {{user.nome | titlecase}} {{user.cognome | titlecase}}</h1>
+      <p>Questo è il tuo profilo e da qui potrai gestire tutto quanto sul tuo account</p>
     </div>
   </div>
 </div>
