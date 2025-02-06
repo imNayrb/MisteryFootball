@@ -5,36 +5,72 @@
 <br>
 <br>
 <br>
+
 <div class="background">
   <div class="shape"></div>
   <div class="shape"></div>
 </div>
+
 <div class="profile-container">
-
-  <div class="profile-details">
-    <h1>Ciao
-      {{user.nome | titlecase}} {{user.cognome | titlecase}}</h1>
-  </div>
-
-  <div class="icon-cards">
-    <div class="icon-card">
-      <i class='bx bx-package'></i>
-      <p>Ordini</p>
-    </div>
-    <div class="icon-card">
+  <div class="sidebar">
+    <div class="user-info">
+      <span>{{ user.nome | titlecase }} {{ user.cognome | titlecase }}</span>
       <i class='bx bx-user'></i>
-      <p>Modifica Profilo</p>
     </div>
-    <div class="icon-card">
-      <i class='bx bx-gift'></i>
-      <p>Riscatta Codici</p>
+    
+    <div class="button-container">
+      <button 
+        (click)="setActiveContent('modifica')"
+        [ngClass]="{'active': activeContent === 'modifica'}">Modifica</button>
+
+      <button 
+        (click)="setActiveContent('ordini')"
+        [ngClass]="{'active': activeContent === 'ordini'}">Ordini</button>
+
+      <button 
+        (click)="setActiveContent('portafoglio')"
+        [ngClass]="{'active': activeContent === 'portafoglio'}">Portafoglio</button>
+
+      <button 
+        (click)="setActiveContent('vediamo')"
+        [ngClass]="{'active': activeContent === 'vediamo'}">Mo vediamo</button>
     </div>
-    <div class="icon-card">
-      <i class='bx bx-wallet'></i>
-      <p>€5,00</p>
-    </div>
+
+    <button class="crazy" (click)="logout()">
+      Logout
+    </button>
   </div>
 
-  <button class="btn btn-secondary" (click)="logout()">Esci</button>
+  <!-- Card a destra con contenuti dinamici -->
+  <div class="card-2">
 
+    <div *ngIf="activeContent === 'modifica'">
+      <div class="card">
+        <h2>Modifica Profilo</h2>
+        <label>Nome:</label>
+        <input type="text" [(ngModel)]="user.nome" />
+      
+        <label>Cognome:</label>
+        <input type="text" [(ngModel)]="user.cognome" />
+      
+        <label>Email:</label>
+        <input type="email" [(ngModel)]="user.email" />
+      
+        <button (click)="updateUser()">Salva Modifiche</button>
+      </div>
+      
+    </div>
+
+    <div *ngIf="activeContent === 'ordini'">
+      <p>Contenuto per Ordini</p>
+    </div>
+
+    <div *ngIf="activeContent === 'portafoglio'">
+      <p>Contenuto per Portafoglio</p>
+    </div>
+
+    <div *ngIf="activeContent === 'vediamo'">
+      <p>Contenuto per Mo Vediamo</p>
+    </div>
+  </div>
 </div>
