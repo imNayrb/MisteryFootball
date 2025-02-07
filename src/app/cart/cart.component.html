@@ -1,54 +1,63 @@
-<div class="shopping-cart">
-
-    <div class="title">
-      Carrello
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <div class="card">
+    <div class="row1">
+        <div class="cart">
+            <div class="title">
+                <div class="row">
+                    <div class="col"><h4>Carrello</h4></div>
+                </div>
+            </div>    
+            <div class="row border-top border-bottom">
+              <div *ngIf="cartItems.length === 0" class="title">
+                Il tuo carrello è vuoto
+              </div>
+                <div class="main align-items-center" *ngFor="let item of cartItems; let i = index">
+                    <div class="col-2"><img class="img-fluid" [src]="item.product.image" alt="{{ item.product.name }}"></div>
+                    <div class="col">
+                        <div class="row text-muted">{{item.product.name}}</div>
+                        <div class="row">{{item.size}}</div>
+                    </div>
+                    <div class="col">
+                        <button href="#" (click)="updateQuantity(item, item.quantity - 1)">
+                          <i class='bx bx-minus'></i>
+                        </button>
+                        <input href="#" class="border" [value]="item.quantity" (change)="onQuantityChange($event, i)">
+                        <button href="#" (click)="updateQuantity(item, item.quantity + 1)">
+                          <i class='bx bx-plus'></i>
+                        </button>
+                        
+                    </div>
+                    <div class="col">
+                      <span class="close">
+                        {{ getTotalPrice(item) | currency:'EUR':'€':'1.2-2':'it' }}
+                      </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="summary">
+          <div class="row">
+            <div>
+              <h5>Totale</h5>
+            </div>
+                <div class="col text-right">
+                  {{ totalAmount | currency:'EUR':'symbol':'1.2-2' }}
+                </div>
+          </div>
+            <form>
+                <select><option class="text-muted">Standard-Delivery- &euro;5.00</option></select>
+                <input id="code" placeholder="Inserisci codice sconto">
+            </form>
+            <div class="row">
+                <div class="col"><h5>Prezzo totale</h5></div>
+                <div class="col text-right"> {{ totalAmount | currency:'EUR':'symbol':'1.2-2' }}</div>
+            </div>
+            <button class="btn">Paga ora</button>
+        </div>
     </div>
+</div>
 
-    <div *ngIf="cartItems.length === 0" class="title">
-      Il tuo carrello è vuoto
-    </div>
-
-    <div class="item" *ngFor="let item of cartItems; let i = index" class="item">
-      <div class="buttons">
-        <span class="delete-btn" (click)="removeFromCart(item)">
-          <i class='bx bx-trash'></i>
-        </span>
-      </div>
-
-      <div class="image">
-        <img [src]="item.product.image" alt="{{ item.product.name }}"/>
-      </div>
-
-      <div class="description">
-        <span>{{ item.product.name }}</span>
-        <span>{{ item.size }}</span>
-      </div>
-
-      <div class="quantity">
-
-        <button class="minus-btn" (click)="updateQuantity(item, item.quantity - 1)">
-          <i class='bx bx-minus'></i>
-        </button>
-
-        <input type="text" [value]="item.quantity" (change)="onQuantityChange($event, i)">
-
-        <button class="plus-btn" (click)="updateQuantity(item, item.quantity + 1)">
-          <i class='bx bx-plus'></i>
-        </button>
-
-      </div>
-
-      <div class="total-price">
-        {{ getTotalPrice(item) | currency:'EUR':'€':'1.2-2':'it' }}
-      </div>
-    </div>
-
-    <div *ngIf="cartItems.length > 0" class="checkout">
-      <div class="total">
-        Totale: 
-        {{ totalAmount | currency:'EUR':'symbol':'1.2-2' }}
-      </div>
-      <button class="checkout-button">Vai al checkout</button>
-    </div>
-
-  </div>
