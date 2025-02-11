@@ -42,7 +42,7 @@ button:focus {
 .card .right {
   width: 654px;
   height: 479px;
-  background: #0c1f2c;
+  background: #171F26;
   position: absolute;
   left: -10%;
   transform: translateX(50%);
@@ -56,8 +56,8 @@ button:focus {
   max-width: 49%;
   transform: translate(-50%, -50%);
   border-radius: 20px;
-  border  : 20px solid #0c1f2c;
-  background-color: #0c1f2c;
+  border  : 20px solid #171F26;
+  background-color: #171F26;
 }
 
 .card .right .productInfo {
@@ -173,7 +173,7 @@ button:focus {
 
 .card .right .productInfo .details .size p.selected {
   border: 2px solid #CB1F40;
-  background-color: rgba(203, 31, 64, 0.1); 
+  background-color: #171F26; 
 }
 
 .quantity-options{

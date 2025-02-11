@@ -13,8 +13,8 @@
     --title-color: hsl(0, 0%, 95%);
     --text-color: hsl(0, 0%, 70%);
     --text-color-light: hsl(0, 0, 60%);
-    --body-color: hsl(0, 0%, 0%);
-    --container-color: hsl(0, 0%, 8%);
+    --body-color: #F2F2F2;
+    --container-color: #F2F2F2;
 
     --biggest-font-size: 2.75rem;
     --h1-font-size: 1.5rem;
