@@ -16,27 +16,31 @@
                 Il tuo carrello è vuoto
               </div>
                 <div class="main align-items-center" *ngFor="let item of cartItems; let i = index">
+                  <div class="product">
                     <div class="col-2"><img class="img-fluid" [src]="item.product.image" alt="{{ item.product.name }}"></div>
                     <div class="col">
                         <div class="row text-muted">{{item.product.name}}</div>
                         <div class="row">{{item.size}}</div>
                     </div>
-                    <div class="col">
-                        <button href="#" (click)="updateQuantity(item, item.quantity - 1)">
-                          <i class='bx bx-minus'></i>
-                        </button>
-                        <input href="#" class="border" [value]="item.quantity" (change)="onQuantityChange($event, i)">
-                        <button href="#" (click)="updateQuantity(item, item.quantity + 1)">
-                          <i class='bx bx-plus'></i>
-                        </button>
-                        
+                    <div class="quantity">
+                      <button (click)="updateQuantity(item, item.quantity - 1)">
+                        <i class='bx bx-minus'></i>
+                      </button>
+                      <input href="#" [value]="item.quantity" (change)="onQuantityChange($event, i)">
+                      <button href="#" (click)="updateQuantity(item, item.quantity + 1)">
+                        <i class='bx bx-plus'></i>
+                      </button>
                     </div>
                     <div class="col">
                       <span class="close">
                         {{ getTotalPrice(item) | currency:'EUR':'€':'1.2-2':'it' }}
                       </span>
                     </div>
-                </div>
+                    <div class="trash">
+                      <i class='bx bx-trash' (click)="removeFromCart(item)" ></i>
+                    </div>
+                  </div>
+              </div>
             </div>
         </div>
         <div class="summary">
@@ -49,8 +53,16 @@
                 </div>
           </div>
             <form>
-                <select><option class="text-muted">Standard-Delivery- &euro;5.00</option></select>
-                <input id="code" placeholder="Inserisci codice sconto">
+                <select class="input-wrapper" (change)="updateShippingCost($event)" >
+                  <option value="5">Consegna Standard 5/7 giorni - €5,00</option>
+                  <option value="12">Consegna Premium 2/3 giorni - €12,00</option>
+                </select>
+              <div class="input-wrapper">
+                <input type="text" class="input" placeholder="Codice sconto" [(ngModel)]="discountCode" name="discount" />
+                <button class="Subscribe-btn" (click)="applyDiscount()" >
+                  Applica
+                </button>
+              </div>                      
             </form>
             <div class="row">
                 <div class="col"><h5>Prezzo totale</h5></div>

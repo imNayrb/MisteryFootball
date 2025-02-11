@@ -3,11 +3,12 @@ import { ProductService } from '../products.service';
 import { Product } from '../product';
 import { CommonModule, registerLocaleData } from '@angular/common';
 import localeIT from '@angular/common/locales/it';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css'
 })
@@ -15,6 +16,11 @@ export class CartComponent implements OnInit {
 
   cartItems: { product: Product, quantity: number, size: string }[] = [];
   totalAmount: number = 0;
+  shippingCost: number = 5;
+  discountCode: string = '';
+  discountAmount: number = 0;
+  validDiscountCode: string = 'SCONTO10';
+
   constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
@@ -23,7 +29,13 @@ export class CartComponent implements OnInit {
   }
 
   calculateTotal(): void {
-    this.totalAmount = this.cartItems.reduce((total, item) => total + this.getTotalPrice(item), 0);
+    let total = this.cartItems.reduce((total, item) => total + this.getTotalPrice(item), 0) + this.shippingCost;
+
+    if (this.discountAmount > 0) {
+      total -= this.discountAmount;
+    }
+
+    this.totalAmount = Math.max(total, 0);
   }
 
   getTotalPrice(item: { product: Product, quantity: number, size: string }): number {
@@ -55,11 +67,25 @@ export class CartComponent implements OnInit {
     }
   }
   
-
   removeFromCart(item: { product: Product, size: string }): void {
     this.productService.removeFromCart(item.product, item.size);
     this.cartItems = this.productService.getCart(); 
-    this.calculateTotal
+    this.calculateTotal()
+  }
+
+  updateShippingCost(event: Event): void {
+    const selectElement = event.target as HTMLSelectElement;
+    this.shippingCost = parseFloat(selectElement.value);
+    this.calculateTotal(); 
+  }
+
+  applyDiscount(): void {
+    if (this.discountCode === this.validDiscountCode) {
+      this.discountAmount = 10; 
+    } else {
+      this.discountAmount = 0;
+    }
+    this.calculateTotal();
   }
 
 }
