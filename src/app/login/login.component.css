@@ -114,3 +114,56 @@ button{
 .register{
     cursor: pointer;
 }
+
+@media (max-width: 768px) {
+    /* Background adjustment */
+    .background {
+        width: 350px;  /* Smaller width */
+        height: 400px; /* Adjust height */
+    }
+
+    /* Form adjustments */
+    form {
+        width: 90%;  /* Ensure it doesn't overflow */
+        padding: 30px 20px;  /* Reduce padding */
+        top: 50%; /* Center vertically */
+    }
+
+    /* Form inputs */
+    input {
+        height: 45px;  /* Adjust input height */
+        font-size: 12px;  /* Reduce font size for smaller screens */
+    }
+
+    /* Button adjustments */
+    button {
+        margin-top: 20px;
+        padding: 12px 0; /* Reduce padding */
+        font-size: 16px;  /* Smaller font size */
+    }
+
+    /* Social section */
+    .social {
+        flex-direction: column; /* Stack vertically */
+        margin-top: 15px;
+    }
+
+    .social div {
+        width: 100%;  /* Full width */
+        margin-top: 10px;  /* Add space between items */
+    }
+
+    .social .fb {
+        margin-left: 0;  /* Remove left margin */
+    }
+
+    /* Register text */
+    .register {
+        font-size: 14px;  /* Smaller font size */
+        margin-top: 15px;  /* Adjust margin */
+    }
+
+    *{
+        overflow: hidden;
+    }
+}

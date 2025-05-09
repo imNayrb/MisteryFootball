@@ -75,36 +75,39 @@ export class ProductCarouselComponent implements OnInit, AfterViewInit {
   }
 
   nextSlidePopular() {
-    if (this.currentIndexPopular + this.itemsPerPage < this.popularProducts.length) {
-      this.currentIndexPopular += this.itemsPerPage;
+    if (this.currentIndexPopular + 1 < this.popularProducts.length) {
+      this.currentIndexPopular += 1;
     }
   }
-
+  
   prevSlidePopular() {
-    if (this.currentIndexPopular - this.itemsPerPage >= 0) {
-      this.currentIndexPopular -= this.itemsPerPage;
+    if (this.currentIndexPopular - 1 >= 0) {
+      this.currentIndexPopular -= 1;
     }
   }
-
+  
   getTransformStylePopular(): string {
-    return `translateX(-${(this.currentIndexPopular * (100 / this.itemsPerPage))}%)`;
+    const itemWidth = 100 / this.itemsPerPage; 
+    return `translateX(-${this.currentIndexPopular * itemWidth}%)`;
   }
-
+  
+  
   nextSlideOnSale() {
-    if (this.currentIndexOnSale + this.itemsPerPage < this.serieAProducts.length) {
-      this.currentIndexOnSale += this.itemsPerPage;
+    if (this.currentIndexOnSale + 1 < this.serieAProducts.length) {
+      this.currentIndexOnSale += 1;
     }
   }
-
+  
   prevSlideOnSale() {
-    if (this.currentIndexOnSale - this.itemsPerPage >= 0) {
-      this.currentIndexOnSale -= this.itemsPerPage;
+    if (this.currentIndexOnSale - 1 >= 0) {
+      this.currentIndexOnSale -= 1;
     }
   }
-
+  
   getTransformStyleOnSale(): string {
-    return `translateX(-${(this.currentIndexOnSale * (100 / this.itemsPerPage))}%)`;
+    return `translateX(-${this.currentIndexOnSale * 100}%)`;
   }
+  
 
   navigateToProduct(productId: number) {
     this.router.navigate(['/product', productId]);

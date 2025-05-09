@@ -7,20 +7,17 @@
         <div class="card-list" [style.transform]="getTransformStylePopular()">
             <div class="card-item" *ngFor="let product of popularProducts">
                 <img class="user-image" [src]="product.image" alt="{{product.name}}">
-                    <h2 class="user-name">{{product.name}}</h2>
-                        <p class="user-profession">{{product.year}}</p>
-                        <p class="price">{{product.price | currency:'EUR':'€':'1.2-2':'it'}}</p>
-                        <button class="message-button" (click)="navigateToProduct(product.id)">Aggiungi al carrello</button>
+                <h2 class="user-name">{{product.name}}</h2>
+                <p class="user-profession">{{product.year}}</p>
+                <p class="price">{{product.price | currency:'EUR':'€':'1.2-2':'it'}}</p>
+                <button class="message-button" (click)="navigateToProduct(product.id)">Aggiungi al carrello</button>
             </div>
         </div>
     </div>
 </div>
 
+<!-- Pulsanti per scorrere -->
 <div class="btn-container">
     <button class="btn" (click)="prevSlidePopular()" [disabled]="currentIndexPopular === 0">Prev</button>
-    <button class="btn" (click)="nextSlidePopular()" [disabled]="(currentIndexPopular + itemsPerPage) >= popularProducts.length">Next</button>
+    <button class="btn" (click)="nextSlidePopular()" [disabled]="(currentIndexPopular + 1) >= popularProducts.length">Next</button>
 </div>
-
-<br>
-<br>
-

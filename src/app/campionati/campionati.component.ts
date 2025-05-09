@@ -13,16 +13,12 @@ import { Router } from '@angular/router';
 })
 export class CampionatiComponent {
 
-  /* Current Index */
-
   currentIndexPopular: number = 0
   currentIndexSerieA: number = 0;
   currentIndexPremier: number = 0;
   currentIndexLaLiga: number = 0
   currentIndexMLS: number = 0
   itemsPerPage: number = 3;
-
-  /* Categorie */
 
   mlsProducts: any[] = [];
   bundesligaProducts: any[] = [];
@@ -90,14 +86,10 @@ export class CampionatiComponent {
       }
   
       // Calcola il nuovo indice in base alla direzione
-      if (direction === 'next') {
-        if (currentIndex + this.itemsPerPage < productsArray.length) {
-          currentIndex += this.itemsPerPage;
-        }
-      } else if (direction === 'prev') {
-        if (currentIndex - this.itemsPerPage >= 0) {
-          currentIndex -= this.itemsPerPage;
-        }
+      if (direction === 'next' && currentIndex + 1 < productsArray.length) {
+        currentIndex += 1;
+      } else if (direction === 'prev' && currentIndex - 1 >= 0) {
+        currentIndex -= 1;
       }
   
       // Aggiorna l'indice corrispondente
