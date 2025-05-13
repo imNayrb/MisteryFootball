@@ -28,6 +28,7 @@ export class ProductCarouselComponent implements OnInit, AfterViewInit {
   laligaProducts: any[] = [];
   premierProducts: any[] = [];
   ligue1Products: any[] = [];
+  misteryProducts: any[] = [];
 
   constructor(private productService: ProductService, private router: Router) { }
 
@@ -55,6 +56,9 @@ export class ProductCarouselComponent implements OnInit, AfterViewInit {
       });
       this.productService.getProductsByCategory('national').subscribe((products) => {
         this.nationalProducts = products;
+      });
+      this.productService.getProductsByCategory('Mistery').subscribe((products) => {
+      this.nationalProducts = products;
       });
     }
 

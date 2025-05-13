@@ -25,7 +25,8 @@ export class CampionatiComponent {
   laligaProducts: any[] = [];
   premierProducts: any[] = [];
   ligue1Products: any[] = [];
-  serieAProducts: any[] = []
+  serieAProducts: any[] = [];
+  misteryProducts: any[] = [];
 
   constructor(private productService: ProductService, private router: Router) {}
 
@@ -47,6 +48,9 @@ export class CampionatiComponent {
     });
     this.productService.getProductsByCategory('ligue1').subscribe((products) => {
       this.ligue1Products = products;
+    });
+    this.productService.getProductsByCategory('Mistery').subscribe((products) => {
+    this.misteryProducts = products;
     });
   }
 

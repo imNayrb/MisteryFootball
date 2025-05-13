@@ -105,5 +105,23 @@
     <button class="btn" (click)="moveSlide('MLS','next')">Next</button>
 </div>
 
+<div class="container" id="Mistery-container">
+
+    <h2>Mistery Box</h2>
+    <br>
+    <br>
+    <div class="slider-wrapper">
+        <div class="card-list" [style.transform]="getTransformStyle('Mistery')">
+            <div class="card-item" *ngFor="let product of misteryProducts">
+                <img class="user-image" [src]="product.image" alt="{{product.name}}">
+                    <h2 class="user-name">{{product.name}}</h2>
+                        <p class="user-profession">{{product.year}}</p>
+                        <p class="price">{{product.price | currency:'EUR':'€':'1.2-2':'it'}}</p>
+                        <button class="message-button" (click)="navigateToProduct(product.id)">Aggiungi al carrello</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <br>
 <br> 

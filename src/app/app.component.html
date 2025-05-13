@@ -7,19 +7,19 @@
     <div [ngClass]="{'show-menu': menuOpen}" class="nav__menu" id="nav-menu">
       <ul class="nav__list">
         <li class="nav__item">
-          <a *ngIf="!isLoggedIn" [routerLink]="['/login']" class="nav__link login">Login</a>
+          <a *ngIf="!isLoggedIn" [routerLink]="['/login']" class="nav__link login" (click)="toggleMenu()">Login</a>
         </li>
         <li class="nav__item">
-          <a [routerLink]="['/home']" class="nav__link">Home</a>
+          <a [routerLink]="['/home']" class="nav__link" (click)="toggleMenu()">Home</a>
         </li>
         <li class="nav__item">
-          <a [routerLink]="['/prodotti']" class="nav__link">Prodotti</a>
+          <a [routerLink]="['/prodotti']" class="nav__link" (click)="toggleMenu()">Prodotti</a>
         </li>
         <li class="nav__item">
-          <a [routerLink]="['/profilo']" class="nav__link">Profilo</a>
+          <a [routerLink]="['/profilo']" class="nav__link" (click)="toggleMenu()">Profilo</a>
         </li>
         <li class="nav__item">
-          <a [routerLink]="['/cart']" class="nav__link">Carrello</a>
+          <a [routerLink]="['/cart']" class="nav__link" (click)="toggleMenu()">Carrello</a>
         </li>
       </ul>
 
@@ -34,27 +34,7 @@
   </nav>
 </header>
 
-<!-- Barra laterale per il Carrello -->
-<div class="cart-drawer" [ngClass]="{'open': cartOpen}">
-  <h2>Carrello</h2>
-  <ul *ngIf="cart.length > 0; else emptyCart">
-    <li *ngFor="let item of cart">
-      <div class="cart-item">
-        <img [src]="item.product.image" alt="{{ item.product.name }}" />
-        <div class="cart-item-info">
-          <h4>{{ item.product.name }}</h4>
-          <p>Taglia: {{ item.size }}</p>
-          <p>Quantità: {{ item.quantity }}</p>
-          <p>Prezzo: {{ item.product.price | currency:'EUR':'€':'1.2-2':'it' }}</p>
-        </div>
-      </div>
-    </li>
-  </ul>
-  <ng-template #emptyCart>
-    <p>Il carrello è vuoto</p>
-  </ng-template>
-  <button class="checkout-button">Checkout</button>
-</div>
+
 
 
 
